@@ -1,19 +1,7 @@
 #include <iostream>
 
-// Can you write a unit converter that can do the following:
-
-// Convert between the following temperature units: Kelvin (K), Celsius (°C) and Fahrenheit (°F).
-// Convert between the following volume units: Litre (l), Millilitre (ml), US liquid gallon (US gal).
-// Expected interface:
-
-// Input parameters: input value, input unit, output unit
-// Return: output value
-// Mixing unit types should not be allowed, e.g. temperature units cannot be converted to volume units.
-// Design it in such a way that it can easily be extended to other unit types and units in future.
 // Write some unit tests to show how you would test your unit converter.
 
-//Create macros for the temp conversions
-//Create macros for the volume conversions
 using namespace std;
 
 /* Inline temperature functions with the math */
@@ -27,6 +15,14 @@ inline float KEL_TO_CEL(float temp){ return temp - 273.15; }
 inline float KEL_TO_FAREN( float temp){ return (temp - 273.15) * double(9)/double(5) + 32; }
 
 /* Inline Volume functions with the math */
+inline float LITRE_TO_MILLI(float vol){ return vol * 1000; }
+inline float LITRE_TO_GAL(float vol){ return vol / 3.785; }
+
+inline float MILLI_TO_LITRE(float vol){ return vol / 1000; }
+inline float MILLI_TO_GAL(float vol){ return vol / 3785.412;  }
+
+inline float GAL_TO_LITRE(float vol){ return vol * 3.785; }
+inline float GAL_TO_MILLI(float vol){ return vol * 3785.412; } 
 
 float temperature(){
 
@@ -103,8 +99,51 @@ float volume(){
     cout << "Exmaple conversion from Litre to Millilitre:   100 l m\n";
 
     cin >> vol >> currentType >> newType;
+    //Convert from farenheit
+    if( currentType == 'l'){
 
-    return 0;  
+        if( newType == 'm'){
+            vol = LITRE_TO_MILLI(vol);
+        }
+        else if( newType == 'g'){
+            vol = LITRE_TO_GAL(vol);
+        }
+        else{
+            //Error invalid type
+            cout << "Not a convertable type\n";
+        }
+    }
+    //Convert from celcius
+    else if( currentType == 'm'){
+        if( newType == 'l'){
+            vol = MILLI_TO_LITRE(vol);
+        }
+        else if( newType == 'g'){
+            vol = MILLI_TO_GAL(vol);
+        }
+        else{
+            cout << "Not a convertable type\n";
+        }
+
+    }
+    //convert from kelvin
+    else if ( currentType == 'g'){
+        if( newType == 'l'){
+            vol = GAL_TO_LITRE(vol);
+        }
+        else if( newType == 'm'){
+            vol = GAL_TO_MILLI(vol);
+        }
+        //Error invalid type
+        else{
+            cout << "Not a convertable type\n";
+        }
+    }
+    //error invalid type
+    else{
+        cout << "Not a convertable type\n";
+    }
+    return vol;
 }
 
 int parse(){
@@ -112,9 +151,11 @@ int parse(){
     char input;
     float output;
 
-    cout << "What are you converting? (Press the letter relevant to you)\n";
+    cout << "\nWhat are you converting? (Press the letter relevant to you)\n";
     cout << "t  - temprature\n";
     cout << "v  - Volume\n";
+    cout << "\nq  - QUIT\n";
+
     cin >> input;
 
     switch(input){
@@ -122,11 +163,12 @@ int parse(){
             output = temperature();
             break;
         case 'v':
-            volume();
+            output = volume();
             break;
+        case 'q':
+            return 1;
         default:
             cout << "Sorry that wasn't a valid case, try again.\n";
-            return 1;
     }
         
     cout << "Result: " << output << endl;
@@ -135,10 +177,10 @@ int parse(){
 
 int main(){
 
-    int err = 1;
-    std::cout << "hello, lets convert!" << std::endl;
+    int err = 0;
+    std::cout << "Hello, lets convert!" << std::endl;
 
-    while( err != 0 )
+    while( err == 0 )
     {
         err = parse();
     }
