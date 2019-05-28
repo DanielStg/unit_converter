@@ -158,6 +158,7 @@ int parse(){
 
     cin >> input;
 
+    //Switch between valid types
     switch(input){
         case 't':
             output = temperature();
@@ -171,15 +172,16 @@ int parse(){
             cout << "Sorry that wasn't a valid case, try again.\n";
     }
         
-    cout << "Result: " << output << endl;
+    //Output red result
+    cout << "\033[1;31m=== Result: " << output << " ===\033[0m\n";
     return 0;
 }
 
 int main(){
 
     int err = 0;
-    std::cout << "Hello, lets convert!" << std::endl;
 
+    //Run
     while( err == 0 )
     {
         err = parse();
