@@ -1,3 +1,2 @@
 all:
-	mkdir -p build
-	g++ -o UnitConverter src/UnitConverter.cpp
+	g++ -o UnitConverter UnitConverter.cpp
