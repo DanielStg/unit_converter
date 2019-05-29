@@ -5,8 +5,6 @@
 
 using namespace std;
 
-/* Inline temperature functions with the math */
-
 float temperature(float temp, char currentType, char newType)
 {
 
@@ -143,6 +141,7 @@ int main(int argc, char **argv)
 
     float output;
 
+    //If running tests
     if ( argc > 1){
         if( strcmp(argv[1], "TEST") == 0 ){
 
@@ -162,6 +161,7 @@ int main(int argc, char **argv)
     //Run
     while( true )
     {
+        //Print methods just so main method is more readable
         print_type();
         cin >> inputType;
 
@@ -172,13 +172,13 @@ int main(int argc, char **argv)
                 print_temp();
                 cin >> unit >> curr_type >> new_type;
                 output = temperature(unit, curr_type, new_type);
-                cout << "\033[1;31m=== Result: " << output << " ===\033[0m\n";
+                cout << "\033[1;31m=== Result: " << output << " ===\033[0m\n"; //Outputs red result
                 continue;
             case 'v':
                 print_vol();
                 cin >> unit >> curr_type >> new_type;
                 output = volume(unit, curr_type, new_type);
-                cout << "\033[1;31m=== Result: " << output << " ===\033[0m\n";
+                cout << "\033[1;31m=== Result: " << output << " ===\033[0m\n"; //Outputs red result
                 continue;
             default:
                 cerr << "Invalid type\n";

@@ -17,6 +17,8 @@ How I would further improve the code with more time:
 
     * The amount of if statements would be less as with proper arugment handling, by the time the arguments get to the methods which do the work, we can trust that they are valid, thus wont need to do so many checks.
 
+    * Compile tests seperately and not have them run from main method
+
 Easy to extend?
 
     Extending without the above argument handling would be slightly tedious as there would be multiple spots in the code that new if else statements would be required when checking conversion types.
