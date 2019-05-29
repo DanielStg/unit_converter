@@ -70,21 +70,21 @@ int run_tests(){
 
     int err = 0;
     cout << "RUNNING TESTS\n";
-    if ( test_math() )
+    if ( test_math() == 0 )
         cout << "test_math PASSED!\n";
     else{
         cout << "test_math FAILED!\n";
         err = 1;
     }
 
-    if ( test_types_correct() )
+    if ( test_types_correct() == 0 )
         cout << "test_types_correct PASSED!\n";
     else{
         cout << "test_types_correct FAILED!\n";
         err = 1;
     }
 
-    if( test_types_incorrect() )
+    if( test_types_incorrect() == 0)
         cout << "test_types_incorrect PASSED!\n";
     else{
         cout << "test_types_incorrect FAILED!\n";

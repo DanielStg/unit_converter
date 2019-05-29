@@ -143,19 +143,19 @@ int main(int argc, char **argv)
 
     float output;
 
-    cout << "ARGV: " << argv[1] << endl;
+    if ( argc > 1){
+        if( strcmp(argv[1], "TEST") == 0 ){
 
-    if( strcmp(argv[1], "TEST") == 0 ){
+            err = run_tests();
 
-        err = run_tests();
-
-        if( err == 0 ){
-            cout << "ALL TESTS PASSED\n";
-            return 0;
-        }
-        else{
-            cout << "1 OR MORE TESTS FAILED\n";
-            return 1;
+            if( err == 0 ){
+                cout << "ALL TESTS PASSED\n";
+                return 0;
+            }
+            else{
+                cout << "1 OR MORE TESTS FAILED\n";
+                return 1;
+            }
         }
     }
 
